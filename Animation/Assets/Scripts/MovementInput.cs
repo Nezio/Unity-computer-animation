@@ -14,6 +14,8 @@ public class MovementInput : MonoBehaviour
     public bool blockRotationPlayer;
     public float desiredRotationSpeed;
     public Animator anim;
+    public float walkSpeed = 1;
+    public float runSpeed = 1;
     public float speed = 1;
     public float speedInput;
     public float allowPlayerRotation;
@@ -32,6 +34,8 @@ public class MovementInput : MonoBehaviour
         anim = this.GetComponent<Animator>();
         cam = Camera.main;
         controller = this.GetComponent<CharacterController>();
+
+        speed = runSpeed;
     }
 
     // Update is called once per frame

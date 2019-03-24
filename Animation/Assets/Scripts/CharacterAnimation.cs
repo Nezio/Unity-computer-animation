@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class CharacterAnimation : MonoBehaviour
@@ -8,7 +9,8 @@ public class CharacterAnimation : MonoBehaviour
     private Animator anim;
     private GameObject player;
     private MovementInput mi;
-    private bool playerMoving = false;
+    private bool moveAnimPlaying = false;
+    public string moveMode = "run";
 
     void Start()
     {
@@ -21,23 +23,69 @@ public class CharacterAnimation : MonoBehaviour
 
     void Update()
     {
-        if(mi.speedInput != 0 && !playerMoving)
-        { // run
-            playerMoving = true;
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            if (moveMode == "run")
+            { // switch to walk
+                mi.speed = mi.walkSpeed;
 
-            anim.CrossFade("Run", 0.5f);
+                moveMode = "walk";
+                SetAnimParametarAndClearAllOther("walk");
 
-            anim.SetBool("Idle", false);
-            anim.SetBool("Run", true);
+                if(mi.speedInput != 0)
+                    anim.CrossFade("Walk", 0.5f);
+            }
+            else
+            { // switch to run
+                mi.speed = mi.runSpeed;
+
+                moveMode = "run";
+                SetAnimParametarAndClearAllOther("run");
+
+                if (mi.speedInput != 0)
+                    anim.CrossFade("Run", 0.5f);
+            }
         }
-        if(mi.speedInput == 0)
-        { // stop running
-            playerMoving = false;
 
-            anim.SetBool("Run", false);
-            anim.SetBool("Idle", true);
+        if (moveMode == "run")
+        {
+            if (mi.speedInput != 0 && !moveAnimPlaying)
+            { // run
+                moveAnimPlaying = true;
+                anim.CrossFade("Run", 0.5f);
+                SetAnimParametarAndClearAllOther("run");
+            }
+            if (mi.speedInput == 0)
+            { // stop running and walking
+                moveAnimPlaying = false;
+                SetAnimParametarAndClearAllOther("idle");
+            }
         }
-        
+        else if (moveMode == "walk")
+        {
+            if (mi.speedInput != 0 && !moveAnimPlaying)
+            { // walk
+                moveAnimPlaying = true;
+                anim.CrossFade("Walk", 0.5f);
+                SetAnimParametarAndClearAllOther("walk");
+            }
+            if (mi.speedInput == 0)
+            { // stop walking and running
+                moveAnimPlaying = false;
+                SetAnimParametarAndClearAllOther("idle");
+            }
+        }
 
+    }
+
+    private void SetAnimParametarAndClearAllOther(string animParametar)
+    {
+        foreach (AnimatorControllerParameter parametar in anim.parameters)
+        {
+            var x = parametar.name;
+            anim.SetBool(parametar.name, false);
+        }
+
+        anim.SetBool(animParametar, true);
     }
 }
