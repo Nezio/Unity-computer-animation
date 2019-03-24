@@ -4,30 +4,40 @@ using UnityEngine;
 
 public class CharacterAnimation : MonoBehaviour
 {
-    private Animator anim;
 
-    // Start is called before the first frame update
+    private Animator anim;
+    private GameObject player;
+    private MovementInput mi;
+    private bool playerMoving = false;
+
     void Start()
     {
         anim = GetComponent<Animator>();
 
+        player = GameObject.FindGameObjectWithTag("Player");
+        mi = player.GetComponent<MovementInput>();
+
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.LeftShift))
+        if(mi.speedInput != 0 && !playerMoving)
         { // run
+            playerMoving = true;
+
             anim.CrossFade("Run", 0.5f);
 
             anim.SetBool("Idle", false);
             anim.SetBool("Run", true);
         }
-        if (Input.GetKeyUp(KeyCode.LeftShift))
-        { // stop runing
+        if(mi.speedInput == 0)
+        { // stop running
+            playerMoving = false;
+
             anim.SetBool("Run", false);
             anim.SetBool("Idle", true);
         }
+        
 
     }
 }

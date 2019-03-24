@@ -14,7 +14,8 @@ public class MovementInput : MonoBehaviour
     public bool blockRotationPlayer;
     public float desiredRotationSpeed;
     public Animator anim;
-    public float Speed;
+    public float speed = 1;
+    public float speedInput;
     public float allowPlayerRotation;
     public Camera cam;
     public CharacterController controller;
@@ -62,6 +63,30 @@ public class MovementInput : MonoBehaviour
         //
     }
 
+    void InputMagnitude()
+    {
+        //Calculate Input Vectors
+        InputX = Input.GetAxis("Horizontal");
+        InputZ = Input.GetAxis("Vertical");
+
+        //anim.SetFloat("InputZ", InputZ, 0.0f, Time.deltaTime * 2f);
+        //anim.SetFloat("InputX", InputX, 0.0f, Time.deltaTime * 2f);
+
+        //Calculate the Input Magnitude
+        speedInput = new Vector2(InputX, InputZ).sqrMagnitude;
+
+        //Physically move player
+        if (speedInput > allowPlayerRotation)
+        {
+            //anim.SetFloat("InputMagnitude", speedInput, 0.0f, Time.deltaTime);
+            PlayerMoveAndRotation();
+        }
+        else if (speedInput < allowPlayerRotation)
+        {
+            //anim.SetFloat("InputMagnitude", speedInput, 0.0f, Time.deltaTime);
+        }
+    }
+
     void PlayerMoveAndRotation()
     {
         InputX = Input.GetAxis("Horizontal");
@@ -84,33 +109,16 @@ public class MovementInput : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(desiredMoveDirection), desiredRotationSpeed);
         }
 
-        transform.Translate(Vector3.forward * Speed * Time.deltaTime);
+        float diagonalModifier = 1f;
+        if ((Mathf.Abs(desiredMoveDirection.x) + Mathf.Abs(desiredMoveDirection.y) + Mathf.Abs(desiredMoveDirection.z)) > 1.5)
+            diagonalModifier = 0.7f;
+        else
+            diagonalModifier = 1f;
+
+        transform.Translate(Vector3.forward * speedInput * speed * diagonalModifier * Time.deltaTime);
         
     }
 
-    void InputMagnitude()
-    {
-        //Calculate Input Vectors
-        InputX = Input.GetAxis("Horizontal");
-        InputZ = Input.GetAxis("Vertical");
-
-        anim.SetFloat("InputZ", InputZ, 0.0f, Time.deltaTime * 2f);
-        anim.SetFloat("InputX", InputX, 0.0f, Time.deltaTime * 2f);
-
-        //Calculate the Input Magnitude
-        Speed = new Vector2(InputX, InputZ).sqrMagnitude;
-
-        //Physically move player
-        if (Speed > allowPlayerRotation)
-        {
-            anim.SetFloat("InputMagnitude", Speed, 0.0f, Time.deltaTime);
-            PlayerMoveAndRotation();
-        }
-        else if (Speed < allowPlayerRotation)
-        {
-            anim.SetFloat("InputMagnitude", Speed, 0.0f, Time.deltaTime);
-            ;
-        }
-    }
+    
 
 }

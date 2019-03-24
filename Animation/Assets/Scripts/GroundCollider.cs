@@ -8,30 +8,29 @@ public class GroundCollider : MonoBehaviour
 
     private CharacterController controller;
     private MovementInput mi;
-
+    private Vector3 fallVelocity;
+    
     // Start is called before the first frame update
     void Start()
     {
-         mi = player.GetComponent<MovementInput>();
+        mi = player.GetComponent<MovementInput>();
         controller = mi.controller;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        fallVelocity.y += Physics.gravity.y * Time.deltaTime;
+        controller.Move(fallVelocity * Time.deltaTime);
+
+        float GroundDistance = 0.7f;
+        bool isGrounded = Physics.CheckSphere(gameObject.transform.position, GroundDistance, 1, QueryTriggerInteraction.Ignore);
+        if (isGrounded && fallVelocity.y < 0)
+            fallVelocity.y = 0;
+
+        //Debug.Log("Ground: " + isGrounded);
     }
 
-
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("collide!");
-
-        controller.SimpleMove(new Vector3(0, mi.fallYspeed, 0));
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        
-    }
+    
 }
