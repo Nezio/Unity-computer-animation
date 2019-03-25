@@ -16,7 +16,9 @@ public class CharacterAnimation : MonoBehaviour
     private MovementInput mi;
     private bool moveAnimPlaying = false;
     private bool fallAnimPlaying = false;
+    private bool fallLandAnimPlaying = false;
     private float maxFallVelocity = 0;
+    private bool allowFallLandEndCheck = false;
 
     void Start()
     {
@@ -29,7 +31,7 @@ public class CharacterAnimation : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.V) && !fallAnimPlaying)
+        if (Input.GetKeyDown(KeyCode.V) && !fallAnimPlaying && !fallLandAnimPlaying)
         {
             if (moveMode == "run")
             { // switch to walk
@@ -53,7 +55,7 @@ public class CharacterAnimation : MonoBehaviour
             }
         }
 
-        if (moveMode == "run" && !fallAnimPlaying)
+        if (moveMode == "run" && !fallAnimPlaying && !fallLandAnimPlaying)
         {
             if (mi.speedInput != 0 && !moveAnimPlaying)
             { // run
@@ -67,7 +69,7 @@ public class CharacterAnimation : MonoBehaviour
                 SetAnimParametarAndClearAllOther("idle");
             }
         }
-        else if (moveMode == "walk" && !fallAnimPlaying)
+        else if (moveMode == "walk" && !fallAnimPlaying && !fallLandAnimPlaying)
         {
             if (mi.speedInput != 0 && !moveAnimPlaying)
             { // walk
@@ -99,6 +101,7 @@ public class CharacterAnimation : MonoBehaviour
             { // fall-land
                 SetAnimParametarAndClearAllOther("fall-land");
                 anim.CrossFade("Fall-Land", 0.1f);
+                fallLandAnimPlaying = true;
                 maxFallVelocity = 0;
             }
             if (groundCollider.GetFallVelocity().y == 0)
@@ -118,20 +121,29 @@ public class CharacterAnimation : MonoBehaviour
 
         }
 
+        if (fallLandAnimPlaying)
+        {
+            mi.fallLandMultiplier = 0;
+            Debug.Log("fall-land");
+        }
+        bool x = AnimIsPlaying("Fall-Land");
+        bool y = !AnimIsPlaying("Fall-Land");
 
         if (AnimIsPlaying("Fall-Land"))
         {
-            mi.fallLandMultiplier = 0;
-            //Debug.Log("fall-land");
+            allowFallLandEndCheck = true;
         }
-        else
+
+        if (allowFallLandEndCheck && !AnimIsPlaying("Fall-Land"))
         {
+            fallAnimPlaying = false;
             mi.fallLandMultiplier = 1;
-            //Debug.Log("ready!");
+            allowFallLandEndCheck = false;
+            fallLandAnimPlaying = false;
+
+            Debug.Log("ready");
         }
-
-        //Debug.Log(mi.fallLandMultiplier);
-
+        
 
     }
 

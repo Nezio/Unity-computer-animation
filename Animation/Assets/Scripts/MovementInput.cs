@@ -121,7 +121,6 @@ public class MovementInput : MonoBehaviour
         else
             diagonalModifier = 1f;
 
-        Debug.Log(fallLandMultiplier);
         transform.Translate(Vector3.forward * speedInput * speed * fallLandMultiplier * diagonalModifier * Time.deltaTime);
         
     }
