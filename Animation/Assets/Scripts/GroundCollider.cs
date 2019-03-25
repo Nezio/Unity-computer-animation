@@ -5,6 +5,7 @@ using UnityEngine;
 public class GroundCollider : MonoBehaviour
 {
     public GameObject player;
+    public float groundDistance = 0.7f;
 
     private CharacterController controller;
     private MovementInput mi;
@@ -24,12 +25,17 @@ public class GroundCollider : MonoBehaviour
         fallVelocity.y += Physics.gravity.y * Time.deltaTime;
         controller.Move(fallVelocity * Time.deltaTime);
 
-        float GroundDistance = 0.7f;
-        bool isGrounded = Physics.CheckSphere(gameObject.transform.position, GroundDistance, 1, QueryTriggerInteraction.Ignore);
+        groundDistance = 0.7f;
+        bool isGrounded = Physics.CheckSphere(gameObject.transform.position, groundDistance, 1, QueryTriggerInteraction.Ignore);
         if (isGrounded && fallVelocity.y < 0)
             fallVelocity.y = 0;
 
-        //Debug.Log("Ground: " + isGrounded);
+        //Debug.Log("Fall V: " + fallVelocity);
+    }
+
+    public Vector3 GetFallVelocity()
+    {
+        return fallVelocity;
     }
 
     

@@ -17,6 +17,7 @@ public class MovementInput : MonoBehaviour
     public float walkSpeed = 1;
     public float runSpeed = 1;
     public float speed = 1;
+    public float fallLandMultiplier = 1;    // used to set speed to 0 if fall-land animation is playing
     public float speedInput;
     public float allowPlayerRotation;
     public Camera cam;
@@ -82,6 +83,7 @@ public class MovementInput : MonoBehaviour
         //Physically move player
         if (speedInput > allowPlayerRotation)
         {
+
             //anim.SetFloat("InputMagnitude", speedInput, 0.0f, Time.deltaTime);
             PlayerMoveAndRotation();
         }
@@ -119,7 +121,8 @@ public class MovementInput : MonoBehaviour
         else
             diagonalModifier = 1f;
 
-        transform.Translate(Vector3.forward * speedInput * speed * diagonalModifier * Time.deltaTime);
+        Debug.Log(fallLandMultiplier);
+        transform.Translate(Vector3.forward * speedInput * speed * fallLandMultiplier * diagonalModifier * Time.deltaTime);
         
     }
 

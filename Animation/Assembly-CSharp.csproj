@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\CharacterAnimation.cs" />
     <Compile Include="Assets\Scripts\GroundCollider.cs" />
+    <Compile Include="Assets\Scripts\GroundNearDetector.cs" />
     <Compile Include="Assets\Scripts\MovementInput.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>D:/Development/Unity/Computer animation/Animation/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
