@@ -60,12 +60,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Radial Menu Framework\Scripts\RMF_Demo.cs" />
+    <Compile Include="Assets\Radial Menu Framework\Scripts\RMF_ForceDirection.cs" />
+    <Compile Include="Assets\Radial Menu Framework\Scripts\RMF_RadialMenu.cs" />
+    <Compile Include="Assets\Radial Menu Framework\Scripts\RMF_RadialMenuElement.cs" />
     <Compile Include="Assets\Scripts\CameraCollision.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\CharacterAnimation.cs" />
     <Compile Include="Assets\Scripts\GroundCollider.cs" />
     <Compile Include="Assets\Scripts\GroundNearDetector.cs" />
     <Compile Include="Assets\Scripts\MovementInput.cs" />
+    <Compile Include="Assets\Scripts\RadialMenuController.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>D:/Development/Unity/Computer animation/Animation/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

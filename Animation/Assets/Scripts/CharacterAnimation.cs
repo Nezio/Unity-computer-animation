@@ -124,7 +124,6 @@ public class CharacterAnimation : MonoBehaviour
         if (fallLandAnimPlaying)
         {
             mi.fallLandMultiplier = 0;
-            Debug.Log("fall-land");
         }
         bool x = AnimIsPlaying("Fall-Land");
         bool y = !AnimIsPlaying("Fall-Land");
@@ -141,7 +140,6 @@ public class CharacterAnimation : MonoBehaviour
             allowFallLandEndCheck = false;
             fallLandAnimPlaying = false;
 
-            Debug.Log("ready");
         }
         
 
