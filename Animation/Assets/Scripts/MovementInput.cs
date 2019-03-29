@@ -16,6 +16,7 @@ public class MovementInput : MonoBehaviour
     public Animator anim;
     public float walkSpeed = 1;
     public float runSpeed = 1;
+    public float moonwalkSpeed = 1;
     public float speed = 1;
     public float fallLandMultiplier = 1;    // used to set speed to 0 if fall-land animation is playing
     public float speedInput;
@@ -28,6 +29,8 @@ public class MovementInput : MonoBehaviour
 
     private float verticalVel;
     private Vector3 moveVector;
+    private GameObject player;
+    private CharacterAnimation charAnim;
 
     // Use this for initialization
     void Start()
@@ -35,6 +38,8 @@ public class MovementInput : MonoBehaviour
         anim = this.GetComponent<Animator>();
         cam = Camera.main;
         controller = this.GetComponent<CharacterController>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        charAnim = player.GetComponent<CharacterAnimation>();
 
         speed = runSpeed;
     }
@@ -44,6 +49,11 @@ public class MovementInput : MonoBehaviour
     {
         InputMagnitude();
 
+        if (charAnim.AnimIsPlaying("Moonwalk"))
+        {
+            Debug.Log("moonwalking...");
+            transform.Translate(Vector3.forward * -moonwalkSpeed * Time.deltaTime);
+        }
 
         //Debug.Log(controller.isGrounded);
         /*if(!controller.isGrounded)
@@ -51,7 +61,7 @@ public class MovementInput : MonoBehaviour
             moveVector = new Vector3(0, fallYspeed, 0);
             controller.SimpleMove(moveVector);
         }*/
-        
+
 
         //If you don't need the character grounded then get rid of this part.
         /*isGrounded = controller.isGrounded;

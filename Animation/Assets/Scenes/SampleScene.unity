@@ -242,12 +242,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 374007208}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.669, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.945, z: 0}
   m_LocalScale: {x: 1, y: 0.30782, z: 1}
   m_Children: []
   m_Father: {fileID: 2005417707}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &374007210
 CapsuleCollider:
@@ -259,8 +259,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.63
-  m_Height: 0
+  m_Radius: 0.2
+  m_Height: 4
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &374007211
@@ -276,7 +276,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2005417702}
-  groundDistance: 0.7
 --- !u!54 &374007212
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -763,7 +762,7 @@ Transform:
   m_LocalScale: {x: 1, y: 0.30782, z: 1}
   m_Children: []
   m_Father: {fileID: 2005417707}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &934925437
 MonoBehaviour:
@@ -1818,7 +1817,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 172674, guid: 69988eeaf22db50428892b9cf8812ad4, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22401190, guid: 69988eeaf22db50428892b9cf8812ad4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1924,9 +1923,57 @@ PrefabInstance:
       propertyPath: m_Colors.m_NormalColor.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11499586, guid: 69988eeaf22db50428892b9cf8812ad4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1883911077}
+    - target: {fileID: 11499586, guid: 69988eeaf22db50428892b9cf8812ad4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ActionA
+      objectReference: {fileID: 0}
+    - target: {fileID: 11499586, guid: 69988eeaf22db50428892b9cf8812ad4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 11406896, guid: 69988eeaf22db50428892b9cf8812ad4, type: 3}
       propertyPath: m_Text
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 11471096, guid: 69988eeaf22db50428892b9cf8812ad4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1883911077}
+    - target: {fileID: 11471096, guid: 69988eeaf22db50428892b9cf8812ad4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ActionC
+      objectReference: {fileID: 0}
+    - target: {fileID: 11471096, guid: 69988eeaf22db50428892b9cf8812ad4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11435124, guid: 69988eeaf22db50428892b9cf8812ad4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1883911077}
+    - target: {fileID: 11435124, guid: 69988eeaf22db50428892b9cf8812ad4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ActionD
+      objectReference: {fileID: 0}
+    - target: {fileID: 11435124, guid: 69988eeaf22db50428892b9cf8812ad4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11493070, guid: 69988eeaf22db50428892b9cf8812ad4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1883911077}
+    - target: {fileID: 11493070, guid: 69988eeaf22db50428892b9cf8812ad4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ActionB
+      objectReference: {fileID: 0}
+    - target: {fileID: 11493070, guid: 69988eeaf22db50428892b9cf8812ad4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69988eeaf22db50428892b9cf8812ad4, type: 3}
@@ -2089,7 +2136,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2005417707}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1777125625 stripped
 GameObject:
@@ -2237,6 +2284,7 @@ MonoBehaviour:
   anim: {fileID: 2005417706}
   walkSpeed: 2.6
   runSpeed: 5
+  moonwalkSpeed: 2.2
   speed: 1
   fallLandMultiplier: 1
   speedInput: 0

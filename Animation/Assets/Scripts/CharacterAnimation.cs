@@ -13,7 +13,7 @@ public class CharacterAnimation : MonoBehaviour
 
     private Animator anim;
     private GameObject player;
-    private MovementInput mi;
+    private MovementInput moveInpt;
     private bool moveAnimPlaying = false;
     private bool fallAnimPlaying = false;
     private bool fallLandAnimPlaying = false;
@@ -25,7 +25,7 @@ public class CharacterAnimation : MonoBehaviour
         anim = GetComponent<Animator>();
 
         player = GameObject.FindGameObjectWithTag("Player");
-        mi = player.GetComponent<MovementInput>();
+        moveInpt = player.GetComponent<MovementInput>();
 
     }
 
@@ -35,35 +35,35 @@ public class CharacterAnimation : MonoBehaviour
         {
             if (moveMode == "run")
             { // switch to walk
-                mi.speed = mi.walkSpeed;
+                moveInpt.speed = moveInpt.walkSpeed;
 
                 moveMode = "walk";
                 SetAnimParametarAndClearAllOther("walk");
 
-                if(mi.speedInput != 0)
+                if(moveInpt.speedInput != 0)
                     anim.CrossFade("Walk", 0.1f);
             }
             else
             { // switch to run
-                mi.speed = mi.runSpeed;
+                moveInpt.speed = moveInpt.runSpeed;
 
                 moveMode = "run";
                 SetAnimParametarAndClearAllOther("run");
 
-                if (mi.speedInput != 0)
+                if (moveInpt.speedInput != 0)
                     anim.CrossFade("Run", 0.1f);
             }
         }
 
         if (moveMode == "run" && !fallAnimPlaying && !fallLandAnimPlaying)
         {
-            if (mi.speedInput != 0 && !moveAnimPlaying)
+            if (moveInpt.speedInput != 0 && !moveAnimPlaying)
             { // run
                 moveAnimPlaying = true;
                 anim.CrossFade("Run", 0.1f);
                 SetAnimParametarAndClearAllOther("run");
             }
-            if (mi.speedInput == 0)
+            if (moveInpt.speedInput == 0)
             { // stop running and walking
                 moveAnimPlaying = false;
                 SetAnimParametarAndClearAllOther("idle");
@@ -71,13 +71,13 @@ public class CharacterAnimation : MonoBehaviour
         }
         else if (moveMode == "walk" && !fallAnimPlaying && !fallLandAnimPlaying)
         {
-            if (mi.speedInput != 0 && !moveAnimPlaying)
+            if (moveInpt.speedInput != 0 && !moveAnimPlaying)
             { // walk
                 moveAnimPlaying = true;
                 anim.CrossFade("Walk", 0.1f);
                 SetAnimParametarAndClearAllOther("walk");
             }
-            if (mi.speedInput == 0)
+            if (moveInpt.speedInput == 0)
             { // stop walking and running
                 moveAnimPlaying = false;
                 SetAnimParametarAndClearAllOther("idle");
@@ -123,25 +123,53 @@ public class CharacterAnimation : MonoBehaviour
 
         if (fallLandAnimPlaying)
         {
-            mi.fallLandMultiplier = 0;
+            moveInpt.fallLandMultiplier = 0;
         }
-        bool x = AnimIsPlaying("Fall-Land");
-        bool y = !AnimIsPlaying("Fall-Land");
-
         if (AnimIsPlaying("Fall-Land"))
         {
             allowFallLandEndCheck = true;
         }
-
         if (allowFallLandEndCheck && !AnimIsPlaying("Fall-Land"))
         {
             fallAnimPlaying = false;
-            mi.fallLandMultiplier = 1;
+            moveInpt.fallLandMultiplier = 1;
             allowFallLandEndCheck = false;
             fallLandAnimPlaying = false;
-
         }
         
+
+    }
+
+    public void PlayAnim(string animation)
+    {
+        if (animation == "Idle")
+        {
+            SetAnimParametarAndClearAllOther("idle");
+        }
+
+        if (animation  == "Wave")
+        {
+            anim.CrossFade("Wave", 0.1f);
+            SetAnimParametarAndClearAllOther("wave");
+        }
+
+        if (animation == "Nod")
+        {
+            anim.CrossFade("Nod", 0.1f);
+            SetAnimParametarAndClearAllOther("nod");
+        }
+
+        if (animation == "Moonwalk")
+        {
+            anim.CrossFade("Moonwalk", 0.1f);
+            SetAnimParametarAndClearAllOther("moonwalk");
+        }
+
+        if (animation == "Gunsling")
+        {
+            anim.CrossFade("Gunsling", 0.1f);
+            SetAnimParametarAndClearAllOther("gunsling");
+        }
 
     }
 
@@ -156,7 +184,7 @@ public class CharacterAnimation : MonoBehaviour
         anim.SetBool(animParametar, true);
     }
 
-    private bool AnimIsPlaying(string animation)
+    public bool AnimIsPlaying(string animation)
     {
         return anim.GetCurrentAnimatorStateInfo(0).IsName(animation);
     }
