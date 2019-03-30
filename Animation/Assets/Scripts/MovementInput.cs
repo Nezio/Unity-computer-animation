@@ -51,7 +51,6 @@ public class MovementInput : MonoBehaviour
 
         if (charAnim.AnimIsPlaying("Moonwalk"))
         {
-            Debug.Log("moonwalking...");
             transform.Translate(Vector3.forward * -moonwalkSpeed * Time.deltaTime);
         }
 
@@ -135,6 +134,5 @@ public class MovementInput : MonoBehaviour
         
     }
 
-    
 
 }

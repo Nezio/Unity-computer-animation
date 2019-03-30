@@ -19,6 +19,7 @@ public class CharacterAnimation : MonoBehaviour
     private bool fallLandAnimPlaying = false;
     private float maxFallVelocity = 0;
     private bool allowFallLandEndCheck = false;
+    private AudioPlayer audioPlayer;
 
     void Start()
     {
@@ -26,6 +27,7 @@ public class CharacterAnimation : MonoBehaviour
 
         player = GameObject.FindGameObjectWithTag("Player");
         moveInpt = player.GetComponent<MovementInput>();
+        audioPlayer = GameObject.FindGameObjectWithTag("AudioSources").GetComponent<AudioPlayer>();
 
     }
 
@@ -103,6 +105,8 @@ public class CharacterAnimation : MonoBehaviour
                 anim.CrossFade("Fall-Land", 0.1f);
                 fallLandAnimPlaying = true;
                 maxFallVelocity = 0;
+
+                audioPlayer.FindAudioSource("AS-Fall-Land").Play();
             }
             if (groundCollider.GetFallVelocity().y == 0)
             { // stop falling

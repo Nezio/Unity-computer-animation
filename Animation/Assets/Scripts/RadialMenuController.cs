@@ -62,28 +62,24 @@ public class RadialMenuController : MonoBehaviour
 
     public void ActionA()
     {
-        Debug.Log("Action A");
         HideRadialMenu();
         charAnim.PlayAnim("Wave");
     }
 
     public void ActionB()
     {
-        Debug.Log("Action B");
         HideRadialMenu();
         charAnim.PlayAnim("Nod");
     }
 
     public void ActionC()
     {
-        Debug.Log("Action C");
         HideRadialMenu();
         charAnim.PlayAnim("Moonwalk");
     }
 
     public void ActionD()
     {
-        Debug.Log("Action D");
         HideRadialMenu();
         charAnim.PlayAnim("Gunsling");
     }
