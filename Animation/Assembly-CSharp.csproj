@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\CameraCollision.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\CharacterAnimation.cs" />
+    <Compile Include="Assets\Scripts\ExitDialog.cs" />
     <Compile Include="Assets\Scripts\GroundCollider.cs" />
     <Compile Include="Assets\Scripts\GroundNearDetector.cs" />
     <Compile Include="Assets\Scripts\MessageHider.cs" />
