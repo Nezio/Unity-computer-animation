@@ -44,7 +44,19 @@ ModelImporter:
     4300008: Leaves_5
     4300010: Leaves_6
     4300012: Tree_3
-  externalObjects: {}
+    6400000: Leaves_1
+    6400002: Leaves_2
+    6400004: Leaves_3
+    6400006: Leaves_4
+    6400008: Leaves_5
+    6400010: Leaves_6
+    6400012: Tree_3
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Green.12
+    second: {fileID: 2100000, guid: aee53a637656be94c865ac626fed9944, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -77,7 +89,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1

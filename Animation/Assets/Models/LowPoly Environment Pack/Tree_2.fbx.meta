@@ -39,6 +39,12 @@ ModelImporter:
     4300006: Leaves_2
     4300008: Leaves_1
     4300010: Leaves_3
+    6400000: Leaves_1
+    6400002: Leaves_2
+    6400004: Leaves_3
+    6400006: Leaves_4
+    6400008: Leaves_5
+    6400010: Tree_2
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -72,7 +78,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1
